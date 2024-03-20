@@ -28,6 +28,15 @@ typedef struct {
     double mark;
 } Record;
 
+/*
+Тигра Г1 Физика 3.5
+Винни_Пух Г2 Пчеловодство 5.0
+Винни_Пух Г2 Русский_язык 3.0
+Кролик Г1 Русский_язык 4.75
+Тигра Г1 Химия 3.67
+Заяц Г0 Искусство 4.88
+*/
+
 int main(void) {
     char *locale = setlocale(LC_ALL, "");
 
@@ -41,10 +50,14 @@ int main(void) {
     }
 
     // Считываем данные из файла
-    while (fscanf(in, "%s %s %s %lf", v[n].st, v[n].gr, v[n].disc, &v[n].mark) == 4) {
+    //char tempstr[100];
+    //fscanf(in, "%s", tempstr);
+    while (!feof(in) && fscanf(in, "%s %s %s %lf", v[n].st, v[n].gr, v[n].disc, &v[n].mark) > 0) {
+        printf("%s %lf\n", v[n].st, v[n].mark);
         n++;
     }
     fclose(in);
+
 
     // Сортируем записи по группе и имени студента
     for (int i = 0; i < n - 1; i++) {
